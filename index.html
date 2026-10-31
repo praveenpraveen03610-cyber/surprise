@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise For You ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        /* Question Screen */
+        #question-screen h2 {
+            font-size: 28px;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            color: #ffb6c1;
+            text-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+            font-weight: 700;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 22px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #yes-btn {
+            background-color: #ff4757;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.8);
+        }
+
+        #no-btn {
+            background-color: #2ed573;
+            color: white;
+            box-shadow: 0 0 20px rgba(46, 213, 115, 0.8);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* YES Screen */
+        #yes-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .name-3d {
+            font-size: 30px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b81, #ff4757, #ffa502, #ff6b81);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s linear infinite, bounce 2s ease-in-out infinite;
+            text-shadow: 3px 3px 15px rgba(255, 71, 87, 0.5);
+            margin-bottom: 25px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0%; }
+            100% { background-position: 300%; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        #message-box {
+            font-size: 22px;
+            line-height: 1.6;
+            color: #fff0f5;
+            min-height: 120px;
+            padding: 0 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            font-weight: 500;
+        }
+
+        /* NO Screen - CSS Teddy Couple Kissing & Dancing */
+        #no-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .couple-stage {
+            width: 240px;
+            height: 160px;
+            position: relative;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            animation: riseUp 1s ease-out forwards;
+        }
+
+        @keyframes riseUp {
+            0% { transform: translateY(60px) scale(0.3); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .teddy-box {
+            width: 80px;
+            height: 110px;
+            position: relative;
+            animation: danceTogether 1.5s infinite alternate ease-in-out;
+        }
+
+        /* Teddy Face & Body Structure */
+        .t-head {
+            width: 55px;
+            height: 50px;
+            background: #8b5e34;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 12px;
+            box-shadow: inset -2px -2px 5px rgba(0,0,0,0.4);
+        }
+        .t-ear {
+            width: 18px;
+            height: 18px;
+            background: #6f4518;
+            border-radius: 50%;
+            position: absolute;
+            top: -3px;
+        }
+        .t-ear.l { left: 4px; }
+        .t-ear.r { right: 4px; }
+
+        .t-eye {
+            width: 6px;
+            height: 7px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 18px;
+        }
+        .t-muzzle {
+            width: 22px;
+            height: 16px;
+            background: #faedcd;
+            border-radius: 50%;
+            position: absolute;
+            top: 23px;
+            left: 16.5px;
+        }
+        .t-nose {
+            width: 8px;
+            height: 5px;
+            background: #3a1500;
+            border-radius: 50%;
+            position: absolute;
+            top: 4px;
+            left: 7px;
+        }
+
+        .t-body {
+            width: 65px;
+            height: 60px;
+            background: #8b5e34;
+            border-radius: 50% 50% 40% 40%;
+            position: absolute;
+            top: 42px;
+            left: 7.5px;
+            box-shadow: inset -3px -3px 6px rgba(0,0,0,0.4);
+        }
+        .t-belly {
+            width: 35px;
+            height: 38px;
+            background: #faedcd;
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+        }
+
+        /* Girl Teddy (Left - Angry/Cute) */
+        .girl-teddy {
+            transform-origin: bottom right;
+        }
+        .girl-teddy .t-eye.l { left: 14px; }
+        .girl-teddy .t-eye.r { right: 14px; }
+        .bow {
+            width: 15px;
+            height: 15px;
+            background: #ff4757;
+            border-radius: 50%;
+            position: absolute;
+            top: -6px;
+            right: 12px;
+            z-index: 5;
+        }
+
+        /* Boy Teddy (Right - Leans in to Kiss) */
+        .boy-teddy {
+            animation: kissAction 2s infinite ease-in-out;
+            transform-origin: bottom left;
+        }
+        .boy-teddy .t-eye.l { left: 14px; }
+        .boy-teddy .t-eye.r { right: 14px; }
+        .tie {
+            width: 12px;
+            height: 12px;
+            background: #1e90ff;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            position: absolute;
+            top: 48px;
+            left: 34px;
+            z-index: 5;
+        }
+
+        /* Kiss Animation & Dance */
+        @keyframes kissAction {
+            0%, 30% { transform: translateX(0) rotate(0deg); }
+            50%, 80% { transform: translateX(-18px) translateY(-5px) rotate(-15deg); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+
+        @keyframes danceTogether {
+            0% { transform: translateY(0) rotate(-3deg); }
+            100% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        .flying-heart {
+            position: absolute;
+            font-size: 22px;
+            top: 25px;
+            animation: floatHeart 2s infinite ease-in-out;
+        }
+
+        @keyframes floatHeart {
+            0%, 40% { opacity: 0; transform: scale(0.5) translateY(10px); }
+            60% { opacity: 1; transform: scale(1.3) translateY(-15px); }
+            100% { opacity: 0; transform: scale(0.8) translateY(-35px); }
+        }
+
+        .love-text {
+            font-size: 24px;
+            color: #ff6b81;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.5;
+            text-shadow: 0 0 10px rgba(255, 107, 129, 0.5);
+            animation: fadeIn 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0.6; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Audio -->
+    <audio id="bg-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="container">
+        <!-- Step 1: Initial Question -->
+        <div id="question-screen">
+            <h2>Bujikutty un kitta onnu sollanum... solla va?</h2>
+            <div class="btn-group">
+                <button id="yes-btn" class="btn" onclick="triggerYes()">YES</button>
+                <button id="no-btn" class="btn" onclick="triggerNo()">NO</button>
+            </div>
+        </div>
+
+        <!-- Step 2: YES Action Screen -->
+        <div id="yes-screen-container" class="hidden">
+            <div id="yes-screen">
+                <div class="name-3d">Yogeshwari Bujikutty Pondati<br>Sorry di thangopulla ❤️</div>
+                <div id="message-box"></div>
+            </div>
+        </div>
+
+        <!-- Step 3: NO Action Screen (CSS Code Teddy Couple Kiss & Dance) -->
+        <div id="no-screen-container" class="hidden">
+            <div id="no-screen">
+                <div class="couple-stage">
+                    <div class="flying-heart">💖</div>
+
+                    <!-- Girl Teddy -->
+                    <div class="teddy-box girl-teddy">
+                        <div class="bow"></div>
+                        <div class="t-ear l"></div>
+                        <div class="t-ear r"></div>
+                        <div class="t-head">
+                            <div class="t-eye l"></div>
+                            <div class="t-eye r"></div>
+                            <div class="t-muzzle"><div class="t-nose"></div></div>
+                        </div>
+                        <div class="t-body"><div class="t-belly"></div></div>
+                    </div>
+
+                    <!-- Boy Teddy (Leans to kiss) -->
+                    <div class="teddy-box boy-teddy">
+                        <div class="tie"></div>
+                        <div class="t-ear l"></div>
+                        <div class="t-ear r"></div>
+                        <div class="t-head">
+                            <div class="t-eye l"></div>
+                            <div class="t-eye r"></div>
+                            <div class="t-muzzle"><div class="t-nose"></div></div>
+                        </div>
+                        <div class="t-body"><div class="t-belly"></div></div>
+                    </div>
+                </div>
+                <div class="love-text">Ayyo! No sonnalum un melaulla love epavume koraikaathu di bujikutty! You are my everything! 💕✨</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const music = document.getElementById('bg-music');
+
+        function triggerYes() {
+            playMusic();
+            document.getElementById('question-screen').classList.add('hidden');
+            document.getElementById('yes-screen-container').classList.remove('hidden');
+            startRomanticMessage();
+        }
+
+        function triggerNo() {
+            playMusic();
+            document.getElementById('question-screen').classList.add('hidden');
+            document.getElementById('no-screen-container').classList.remove('hidden');
+        }
+
+        function playMusic() {
+            music.play().catch(error => {
+                console.log("Audio autoplay restricted.");
+            });
+        }
+
+        // Romantic continuous messages
+        const messages = [
+            "Na un kitta kobama irunthalum, un ninaivu illama oru nimisham kuda ennala irukka mudiyathu...",
+            "Neethan enoda ellame, en uyir, en ulagam... unna hurt panniruntha unmaiyave romba sorry di pondati...",
+            "Inime unna en uyiruku melathaan pathukuven... un mugathula oru chinna sirippu varathu kaga enna vena pannuven...",
+            "Un kitta pesama irukkurathu enakke oru yugam mathiri irukku... please en mela irukra kobatha maranthutu oru sirippu sirichiru buji...",
+            "Un love thaan enakku strength... un koodave lifetime irukkanum athu thaan enoda ore oru kanavu...",
+            "Love you so much my kutty pondati! Forever yours..."
+        ];
+
+        let msgIndex = 0;
+        let charIndex = 0;
+
+        function startRomanticMessage() {
+            const box = document.getElementById('message-box');
+            if (msgIndex < messages.length) {
+                if (charIndex < messages[msgIndex].length) {
+                    box.innerHTML += messages[msgIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(startRomanticMessage, 55); 
+                } else {
+                    setTimeout(() => {
+                        box.innerHTML = ""; 
+                        charIndex = 0;
+                        msgIndex++;
+                        startRomanticMessage();
+                    }, 3500); 
+                }
+            } else {
+                msgIndex = 0;
+                startRomanticMessage();
+            }
+        }
+    </script>
+</body>
+</html>
